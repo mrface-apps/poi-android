@@ -4,6 +4,7 @@ apply plugin: 'maven-publish'
 assemble.dependsOn shadowJar
 
 dependencies {
+    implementation "org.apache.poi:poi:$poiVersion"
     implementation "org.apache.poi:poi-ooxml:$poiVersion"
     implementation 'org.apache.xmlbeans:xmlbeans:4.0.0'
     implementation 'com.fasterxml:aalto-xml:1.2.2'
@@ -29,9 +30,9 @@ shadowJar {
     }
 
     // Relocate javax dependencies so Android does not choke
-//    relocate 'javax.xml.namespace', 'org.apache.poi.javax.xml.namespace'
-//    relocate 'javax.xml.stream', 'org.apache.poi.javax.xml.stream'
-//    relocate 'javax.xml.XMLConstants', 'org.apache.poi.javax.xml.XMLConstants'
+    relocate 'javax.xml.namespace', 'org.apache.poi.javax.xml.namespace'
+    relocate 'javax.xml.stream', 'org.apache.poi.javax.xml.stream'
+    relocate 'javax.xml.XMLConstants', 'org.apache.poi.javax.xml.XMLConstants'
 }
 
 artifacts {
